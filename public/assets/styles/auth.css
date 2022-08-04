@@ -1,0 +1,84 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+:root {
+    --white: #fff;
+    --hoverWhite: #e9e4e4;
+    --slate: #f5f5f5;
+    --yellow: #ffc107;
+    --blue: #3c62b4;
+    --hoverblue: #4272d7;
+    --darkBlue: #272e45;
+    --tranparentDarkBlue: rgba(39, 46, 69, 0.7);
+    --black: #333;
+    --darkerBlack: #555;
+    --darkGray: #666;
+    --regular: 16px;
+    --medium: 20px;
+    --large: 30px;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+#login,
+#signup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: url("../images/auth-background.avif") center center/cover
+        no-repeat;
+    height: 100vh;
+    position: relative;
+}
+
+#login::before,
+#signup::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: var(--tranparentDarkBlue);
+}
+
+#login label,
+#signup label {
+    font-size: var(--medium);
+    color: var(--white);
+}
+
+.btn_auth {
+    background-color: var(--blue);
+    color: var(--white);
+}
+
+.btn_auth:hover,
+.btn_auth:active {
+    background-color: var(--hoverblue);
+    color: var(--white);
+}
+.btn_google_auth {
+    background-color: var(--white);
+    color: var(--darkBlue);
+}
+
+.btn_google_auth:hover {
+    background-color: var(--hoverWhite);
+    color: var(--darkBlue);
+}
+
+#login p,
+#signup p {
+    font-size: var(--medium);
+    color: var(--white);
+}
+
+#login p a,
+#signup p a {
+    font-size: var(--medium);
+    color: var(--white);
+    font-weight: 700;
+}
