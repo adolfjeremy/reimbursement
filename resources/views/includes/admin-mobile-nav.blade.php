@@ -15,7 +15,7 @@
 			</li>
 			<li>
 				<a href="{{ route('user-list') }}" class="d-flex flex-column align-items-center justify-content-center navbar_mobile_link">
-					<img src="/assets/images/icons/list.png" alt="">
+					<img src="/assets/images/icons/userlist.png" alt="">
 					<span>Users</span>
 				</a>
 			</li>

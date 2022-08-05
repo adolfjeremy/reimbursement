@@ -15,7 +15,7 @@
                 Monthly Report
             </a>
             <a href="{{ route('user-list') }}" class="menu_link{{ (request()->is('admin/user-list*') ? " active" : "") }}">
-                <img src="/assets/images/icons/list.png">
+                <img src="/assets/images/icons/userlist.png">
                 User List
             </a>
             @can('ADMIN')
