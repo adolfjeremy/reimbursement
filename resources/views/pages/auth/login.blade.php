@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <section id="login" style="background-image: url('/assets/images/292.jpg')">
+    <section id="login" style="background-image: url('/assets/images/bg.jpg')">
         <div class="container position-relative">
             <div class="row align-items-center justify-content-center">
                 <div class="col-12 col-lg-5 mt-4">
