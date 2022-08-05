@@ -16,6 +16,9 @@ class DashboardController extends Controller
             Carbon::now()->month
         ));
 
+        $month =Carbon::now()->format('F');
+        $year = $from->year;
+
         $to = clone $from;
         $to->day =$to->daysInMonth;
 
@@ -33,6 +36,8 @@ class DashboardController extends Controller
             'denied' => $denied,
             'totalExps' => $totalExps,
             'rcExps' => $rcExps,
+            'month' => $month,
+            'year' => $year
         ]);
     }
 

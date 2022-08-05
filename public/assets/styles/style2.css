@@ -1,13 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 :root {
-    --white: #fff;
+    --white: #f8f8f9;
     --slate: #f5f5f5;
     --yellow: #ffc107;
     --blue: #4272d7;
     --darkBlue: #272e45;
-    --black: #333;
+    --black: #1b1c1e;
     --darkerBlack: #555;
     --darkGray: #666;
+
     --regular: 16px;
     --medium: 20px;
     --large: 30px;
@@ -28,6 +29,24 @@ ul {
     padding: 0;
 }
 
+@media (min-width: 576px) {
+    .modal-body img {
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 576px) {
+    .modal-body img {
+        max-width: calc(100vw - 50px);
+    }
+}
+
+@media (min-width: 992px) {
+    .modal-body img {
+        max-width: 700px;
+    }
+}
+
 .pagination {
     align-items: center;
     justify-content: center;
@@ -42,61 +61,103 @@ aside {
     top: 0;
     left: 0;
     bottom: 0;
-    width: 300px;
-    background-color: var(--white);
+    width: 260px;
+    background-color: var(--black);
     overflow-y: auto;
-}
-
-aside .logo {
-    height: 75px;
-    padding: 0 35px;
-    background-color: var(--slate);
+    padding: 20px;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+aside span {
+    color: var(--darkerBlack);
+    font-size: 12px;
+}
+
+.menu_top,
+.menu_bottom,
+.logo_wrapper {
+    display: flex;
+    flex-direction: column;
     justify-content: center;
-    box-shadow: 0 1px 3px var(--black);
 }
 
-aside .logo a,
-.navbar-brand {
-    font-size: var(--large);
-    font-weight: 700;
-    color: var(--darkBlue);
+.logo_wrapper h1 {
+    font-size: 25px;
+    color: var(--white);
 }
 
-aside .logo a strong,
-.navbar-brand strong {
+.logo_wrapper {
+    padding-bottom: 25px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--darkerBlack);
+}
+
+.logo_wrapper p {
+    font-size: var(--regular);
+    color: var(--white);
+    font-weight: 500;
+    margin: 0;
+}
+
+.logo_wrapper p strong {
     color: var(--yellow);
     text-decoration: underline;
 }
 
-.menu_wrapper nav {
-    padding: 35px 35px 0 35px;
+.menu_list {
+    margin-top: 15px;
+}
+
+.menu_link {
     display: block;
-}
-
-.menu_wrapper ul {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-}
-
-.menu_wrapper ul li {
-    position: relative;
-    width: 100%;
-}
-
-.menu_wrapper ul li a {
-    display: block;
+    padding: 12px 20px;
     font-size: var(--regular);
-    font-weight: 400;
-    color: var(--darkerBlack);
-    padding: 15px 0;
+    color: var(--white) !important;
+    margin-top: 10px;
 }
 
-.menu_wrapper ul li a:hover {
-    color: var(--blue);
+.menu_list .active,
+.menu_link:hover,
+.menu_link:focus {
+    background-color: #323335;
+    border-radius: 11px;
+    transition: 250ms ease-in-out;
+}
+
+.menu_list .active img {
+    margin-right: 20px !important;
+}
+
+.menu_link img {
+    margin-right: 10px;
+}
+
+.menu_bottom {
+    padding-top: 25px;
+    border-top: 2px solid var(--darkerBlack);
+}
+
+.menu_bottom .profile_wrapper {
+    padding: 10px 20px;
+    margin-top: 15px;
+}
+
+.menu_bottom .profile_wrapper p {
+    font-size: 14px;
+    color: var(--white);
+    margin: 0 0 0 5px;
+}
+
+.menu_bottom .active {
+    background-color: #323335;
+    border-radius: 11px;
+    transition: 250ms ease-in-out;
+}
+
+.menu_bottom .active:hover {
+    background-color: var(--black);
 }
 
 .menu_wrapper ul li a img {
@@ -105,35 +166,31 @@ aside .logo a strong,
 
 @media (min-width: 992px) {
     main {
-        padding-left: 300px;
+        padding-left: 260px;
         background-color: #e5e5e5;
     }
 }
 
 .content_header {
     padding: 15px 0;
-    background-color: var(--slate);
-    box-shadow: 1px 1px 3px var(--black);
-}
-
-@media (min-width: 992px) {
-    .content_header {
-        position: fixed;
-        top: 0;
-        right: 0;
-        left: 300px;
-        height: 75px;
-    }
+    background-color: #e5e5e5;
 }
 
 .profile_picture {
-    height: 50px;
-    width: 50px;
+    height: 45px;
+    width: 45px;
     border-radius: 50%;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
     background-color: var(--darkBlue);
+}
+
+@media (min-width: 992px) {
+    .profile_picture {
+        height: 35px;
+        width: 35px;
+    }
 }
 
 .content_wrapper {
@@ -145,7 +202,7 @@ aside .logo a strong,
 @media (min-width: 992px) {
     .content_wrapper {
         min-height: 100vh;
-        padding: 110px 0 0 0;
+        padding: 30px 0 0 0;
     }
 }
 
@@ -160,7 +217,9 @@ aside .logo a strong,
 .overview_wrapper,
 .add_wrapper {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
 }
 
 .add_wrapper > button,
@@ -170,14 +229,11 @@ aside .logo a strong,
 
 .overview_wrapper h1 {
     font-size: 25px;
-    font-weight: 500;
+    font-weight: 600;
     text-transform: capitalize;
 }
 
 @media (min-width: 992px) {
-    .overview_wrapper {
-        justify-content: start;
-    }
     .add_wrapper {
         display: flex;
         align-items: center;
@@ -253,15 +309,15 @@ aside .logo a strong,
     bottom: 0;
     left: 0;
     right: 0;
-    height: 74px;
-    background-color: var(--white);
-    border-top: 1px solid var(--black);
+    z-index: 100;
+    padding: 2px;
+    background-color: var(--black);
 }
 
 .navbar_mobile_list {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
     height: 100%;
 }
 
@@ -270,10 +326,11 @@ aside .logo a strong,
 }
 
 .navbar_mobile_link img {
-    width: 40px;
-    height: 40px;
+    width: 24px;
+    height: 24px;
 }
 
 .navbar_mobile_link span {
-    color: var(--black);
+    color: var(--white);
+    font-size: 12px;
 }

@@ -43,7 +43,7 @@ class GoogleController extends Controller
             }
             
         } catch (\Throwable $th) {
-            dd($th);
+            
         }
     }
 }

@@ -13,6 +13,60 @@
                 </div>
             </div>
             <div class="row mt-4">
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="overview_item item-c1">
+                        <div class="overview_inner">
+                            <div class="icon">
+                                <img src="/assets/images/icons/total.png" alt="">
+                            </div>
+                            <div class="text text-center">
+                                <h2>Rp. {{ number_format($totalExps,0,"",".") }}</h2>
+                                <span>total Expense</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="overview_item item-c2">
+                        <div class="overview_inner">
+                            <div class="icon">
+                                <img src="/assets/images/icons/approve.png" alt="">
+                            </div>
+                            <div class="text text-center">
+                                <h2>Rp. {{ number_format($approve,0,"",".") }}</h2>
+                                <span>approve expense</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="overview_item item-c3">
+                        <div class="overview_inner">
+                            <div class="icon">
+                                <img src="/assets/images/icons/expense.png" alt="">
+                            </div>
+                            <div class="text text-center">
+                                <h2>Rp. {{ number_format($pending,0,"",".") }}</h2>
+                                <span>pending expense</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="overview_item item-c4">
+                        <div class="overview_inner">
+                            <div class="icon">
+                                <img src="/assets/images/icons/denied.png" alt="">
+                            </div>
+                            <div class="text text-center">
+                                <h2>Rp. {{ number_format($denied,0,"",".") }}</h2>
+                                <span>denied expense</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
                 <form  method="get">
                     <div class="row">
                         <div class="col-xs-1 col-md-4 form-group">
@@ -41,7 +95,7 @@
                         </div>
                         <div class="col-xs-2 col-md-4 form-group">
                             <label for="month">User</label>
-                            <select name="u" class="form-select" id="y" required>
+                            <select name="u" class="form-select" id="y">
                                 <option value="" selected>Select User</option>
                             @foreach($users as $user)
                                 <option value="{{ $user->id }}">{{ $user->name }}</option>

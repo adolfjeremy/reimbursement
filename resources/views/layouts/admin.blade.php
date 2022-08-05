@@ -4,14 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>@yield('title') | Ideatax Expense Tracker</title>
+    <title>@yield('title') | Reimbursement by Ideatax</title>
     @include('includes.styles')
 </head>
 <body>
     @include('includes.admin-mobile-nav')
-    @include('includes.admin-sidebar')
+    @include('includes.admin-menu')
     <main>
-        @include('includes.main-header')
         @yield('content')
     </main>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"></script>

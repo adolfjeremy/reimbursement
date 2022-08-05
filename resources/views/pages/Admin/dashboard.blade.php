@@ -8,8 +8,9 @@
     <section class="content_wrapper">
         <div class="container">
             <div class="row d-flex flex-column-reverse flex-md-row">
-                <div class="col-12 col-md-6 overview_wrapper mt-3 m-md-0">
+                <div class="col-12 overview_wrapper mt-3 m-md-0">
                     <h1>overview</h1>
+                    <p>{{ $month }} {{ $year }} overview</p>
                 </div>
             </div>
             <div class="row mt-4">
@@ -30,7 +31,7 @@
                     <div class="overview_item item-c2">
                         <div class="overview_inner">
                             <div class="icon">
-                                <img src="/assets/images/icons/paid.png" alt="">
+                                <img src="/assets/images/icons/approve.png" alt="">
                             </div>
                             <div class="text text-center">
                                 <h2>Rp. {{ number_format($approve,0,"",".") }}</h2>
@@ -67,11 +68,9 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-12 col-md-6 overview_wrapper mt-3 m-md-0">
+                <div class="col-12 overview_wrapper mt-3 m-md-0">
                     <h1>recent expense</h1>
-                </div>
-                <div class="col-12 col-md-6 add_wrapper">
-                    <a class="btn btn-primary" href="{{ route('admin-report') }}">all expense</a>
+                    <p>Five latest expenses</p>
                 </div>
             </div>
             <div class="row mt-4 table-responsive">

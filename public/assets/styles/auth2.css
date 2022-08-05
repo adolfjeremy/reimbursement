@@ -30,8 +30,9 @@ a {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: url("../images/auth-background.avif") center center/cover
-        no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     height: 100vh;
     position: relative;
 }
@@ -46,7 +47,7 @@ a {
 
 #login label,
 #signup label {
-    font-size: var(--medium);
+    font-size: var(--regular);
     color: var(--white);
 }
 
@@ -72,7 +73,7 @@ a {
 
 #login p,
 #signup p {
-    font-size: var(--medium);
+    font-size: var(--regular);
     color: var(--white);
 }
 

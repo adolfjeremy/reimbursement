@@ -1,11 +1,11 @@
 @extends('layouts.auth')
 
-@section('page-title')
-    Login | UndanganCintaku
+@section('title')
+    Login
 @endsection
 
 @section('content')
-    <section id="login">
+    <section id="login" style="background-image: url('/assets/images/auth-background.avif')">
         <div class="container position-relative">
             <div class="row align-items-center justify-content-center">
                 <div class="col-12 col-lg-5 mt-4">

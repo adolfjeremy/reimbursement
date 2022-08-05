@@ -34,11 +34,20 @@ class ReportController extends Controller
             $expenses = Expense::where('user_id', $request->query('u'))->whereBetween('entry_date', [$from, $to])->latest()->paginate(8)->withQueryString();
         }
 
+        $pending = $expenses->where('status', 'PENDING')->sum('amount');
+        $approve = $expenses->where('status', 'APPROVE')->sum('amount');
+        $denied = $expenses->where('status', 'DENIED')->sum('amount');
+        $totalExps = $expenses->sum('amount');
+
         return view('pages.Admin.report', [
             'expenses' => $expenses,
             'month' => $month,
             'year' => $year,
             'users'=> $users,
+            'pending' => $pending,
+            'approve' => $approve,
+            'denied' => $denied,
+            'totalExps' => $totalExps,
         ]);
     }
 
