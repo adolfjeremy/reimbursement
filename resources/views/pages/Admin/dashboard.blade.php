@@ -84,7 +84,7 @@
                                 <th class="table-dark" scope="col">name</th>
                                 <th class="table-dark" scope="col">price</th>
                                 <th class="table-dark" scope="col">status</th>
-                                <th class="table-dark" scope="col">reciept</th>
+                                <th class="table-dark" scope="col">receipt</th>
                                 <th class="table-dark" scope="col">action</th>
                             </tr>
                         </thead>
