@@ -7,9 +7,15 @@
 @section('content')
     <section class="content_wrapper">
         <div class="container">
-            <div class="row d-flex flex-column-reverse flex-md-row">
+            <div class="row d-flex flex-column flex-md-row">
                 <div class="col-12 col-md-6 overview_wrapper mt-3 m-md-0">
                     <h1>{{$month }} {{ $year }} Report</h1>                
+                </div>
+                <div class="col-12 col-md-6 mt-3 m-md-0 d-flex align-items-center justify-content-md-end">
+                    <button class="btn btn-success" onclick="exportData('xlsx')">
+                        <img src="/assets/images/icons/donwload.png" alt="">
+                        <span>Export</span>
+                    </button>
                 </div>
             </div>
             <div class="row mt-4">
@@ -152,7 +158,7 @@
                                     </div>
                                 </td>
                                 <td class="d-flex align-items-center justify-content-center">
-                                     <button type="button" class="btn btn-success me-2" onClick="edit({{ $expense->id }})">Detail</button>
+                                        <button type="button" class="btn btn-success me-2" onClick="edit({{ $expense->id }})">Detail</button>
                                     <div class="modal fade" id="exampleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-lg modal-dialog-centered">
                                             <div class="modal-content">
@@ -175,12 +181,15 @@
                     </table>
                 </div>
             </div>
-            <div class="row">
+            <div class="row pb-4">
                 <div class="col-12">
                         {{ $expenses->links() }}
                 </div>
             </div>
         </div>
+    </section>
+    <section class="export d-none">
+        @include('pages.Admin.table')
     </section>
 @endsection
 
@@ -210,6 +219,15 @@
                     location.reload();
                 }
             });
+        }
+    </script>
+    <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
+    <script>
+        function exportData(type) {
+            let data = document.querySelector("#ExportData");
+            let file = XLSX.utils.table_to_book(data, {sheet: "sheet1"});
+            XLSX.write(file, { bookType: type, bookSST: true, type: 'base64' });
+            XLSX.writeFile(file, 'file.' + type);
         }
     </script>
 @endpush

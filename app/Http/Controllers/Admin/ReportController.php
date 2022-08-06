@@ -6,10 +6,7 @@ use Carbon\Carbon;
 use App\Models\Expense;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ExpenseRequest;
-use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use Illuminate\Support\Str;
 
 class ReportController extends Controller
 {
@@ -29,9 +26,15 @@ class ReportController extends Controller
         $users = User::get();
 
         if($request->query('u') === null) {
-            $expenses = Expense::whereBetween('entry_date', [$from, $to])->orderBy('entry_date', 'desc')->paginate(8)->withQueryString();
+            $expenses = Expense::whereBetween('entry_date', [$from, $to])->orderBy('entry_date', 'desc')->paginate(5)->withQueryString();
         } else {
-            $expenses = Expense::where('user_id', $request->query('u'))->whereBetween('entry_date', [$from, $to])->latest()->paginate(8)->withQueryString();
+            $expenses = Expense::where('user_id', $request->query('u'))->whereBetween('entry_date', [$from, $to])->orderBy('entry_date', 'desc')->paginate(5)->withQueryString();
+        }
+
+        if($request->query('u') === null) {
+            $reports = Expense::whereBetween('entry_date', [$from, $to])->orderBy('entry_date', 'desc')->get();
+        } else {
+            $reports = Expense::where('user_id', $request->query('u'))->whereBetween('entry_date', [$from, $to])->orderBy('entry_date', 'desc')->get();
         }
 
         $pending = $expenses->where('status', 'PENDING')->sum('amount');
@@ -48,6 +51,7 @@ class ReportController extends Controller
             'approve' => $approve,
             'denied' => $denied,
             'totalExps' => $totalExps,
+            'reports' => $reports
         ]);
     }
 

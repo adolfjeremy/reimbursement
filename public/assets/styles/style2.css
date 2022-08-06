@@ -44,6 +44,7 @@ ul {
 @media (min-width: 992px) {
     .modal-body img {
         max-width: 700px;
+        max-height: 70vh;
     }
 }
 
