@@ -32,6 +32,7 @@ Route::middleware('guest')->group(function() {
 });
 
 Route::prefix('admin')
+->middleware('auth')
 ->middleware('isAdmin')
 ->group(function() {
     Route::get('dashboard', [AdminDashboardController::class, 'index'])->name('admin-dashboard');
