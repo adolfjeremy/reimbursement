@@ -4,7 +4,7 @@
         <tr>
             <th>Employee Name</th>
             <th>Date</th>
-            <th>Expenses Name</th>
+            <th>Expense Type</th>
             <th>Price</th>
             <th>Status</th>
             <th>Description</th>

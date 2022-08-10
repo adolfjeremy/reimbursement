@@ -24,7 +24,7 @@
                                 <form action="{{ route('monthly-report-store') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="mb-3">
-                                        <label for="name" class="col-form-label">Name:</label>
+                                        <label for="name" class="col-form-label">Expense Type:</label>
                                         <input name="name" type="text" class="form-control" id="name" required>
                                     </div>
                                     <div class="mb-3">

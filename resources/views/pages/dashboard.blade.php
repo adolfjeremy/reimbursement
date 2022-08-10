@@ -25,7 +25,7 @@
                                 <form action="{{ route('dashboard-store') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="mb-3">
-                                        <label for="name" class="col-form-label">Name:</label>
+                                        <label for="name" class="col-form-label">Expense Type:</label>
                                         <input name="name" type="text" class="form-control" id="name" required>
                                     </div>
                                     <div class="mb-3">
@@ -121,7 +121,7 @@
                         <thead>
                             <tr>
                                 <th class="table-dark" scope="col">date</th>
-                                <th class="table-dark" scope="col">name</th>
+                                <th class="table-dark" scope="col">expense type</th>
                                 <th class="table-dark" scope="col">price</th>
                                 <th class="table-dark" scope="col">status</th>
                                 <th class="table-dark" scope="col">receipt</th>
@@ -137,28 +137,38 @@
                                 <td>Rp. {{ number_format($rcExp->amount,0,"",".") }}</td>
                                 <td>{{ $rcExp->status }}</td>
                                 <td>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#{{ $rcExp->slug }}">
-                                    Open
-                                    </button>
-                                    <div class="modal fade" id="{{ $rcExp->slug }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-lg modal-dialog-centered">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="staticBackdropLabel">{{ $rcExp->name }} Receipt</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <img src="{{ asset("storage/" . $rcExp->receipt) }}" alt="">
+                                    @php
+                                        $file = $rcExp->receipt;
+                                        $checkFile = substr($file, -3);
+                                    @endphp
+                                    @if ($checkFile == 'pdf')
+                                        <a href="{{ asset("storage/" . $rcExp->receipt) }}" target="_blank" class="btn btn-primary">
+                                            Open
+                                        </a>
+                                    @else
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#{{ $rcExp->slug }}{{ $rcExp->id }}">
+                                        Open
+                                        </button>
+                                        <div class="modal fade" id="{{ $rcExp->slug }}{{ $rcExp->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="staticBackdropLabel">{{ $rcExp->name }} Receipt</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <img src="{{ asset("storage/" . $rcExp->receipt) }}" alt="">
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    @endif
                                 </td>
                                 <td class="d-flex align-items-center justify-content-center">
-                                    <button type="button" class="btn btn-success me-2" data-bs-toggle="modal" data-bs-target="#{{ $rcExp->slug }}-detail">
+                                    <button type="button" class="btn btn-success me-2" data-bs-toggle="modal" data-bs-target="#{{ $rcExp->slug }}{{ $rcExp->id }}-detail">
                                         Detail
                                     </button>
-                                    <div class="modal fade" id="{{ $rcExp->slug }}-detail" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal fade" id="{{ $rcExp->slug }}{{ $rcExp->id }}-detail" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content">
                                                 <div class="modal-header">

@@ -27,10 +27,8 @@ class ExpenseRequest extends FormRequest
             'name'=> "required|max:255",
             'amunt'=> "required",
             'entry_date' => 'required',
-            'receipt' => 'image',
-            'description'=> "required|string",
+            'receipt' => 'file',
             'status' => "required|string|in:PENDING,APPROVE,DENIED'",
-            'remark' => "required",
             'user_id'=> "required|exists:users,id",
         ];
     }

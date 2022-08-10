@@ -123,7 +123,7 @@
                             <tr>
                                 <th class="table-dark" scope="col">name</th>
                                 <th class="table-dark" scope="col">date</th>
-                                <th class="table-dark" scope="col">name</th>
+                                <th class="table-dark" scope="col">expense type</th>
                                 <th class="table-dark" scope="col">price</th>
                                 <th class="table-dark" scope="col">status</th>
                                 <th class="table-dark" scope="col">receipt</th>
@@ -140,6 +140,15 @@
                                 <td>Rp. {{ number_format($expense->amount,0,"",".") }}</td>
                                 <td>{{ $expense->status }}</td>
                                 <td>
+                                    @php
+                                        $file = $expense->receipt;
+                                        $checkFile = substr($file, -3);
+                                    @endphp
+                                    @if ($checkFile == 'pdf')
+                                        <a href="{{ asset("storage/" . $expense->receipt) }}" target="_blank" class="btn btn-primary">
+                                            Open
+                                        </a>
+                                    @else
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#{{ $expense->slug }}">
                                     Open
                                     </button>
@@ -156,6 +165,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @endif
                                 </td>
                                 <td class="d-flex align-items-center justify-content-center">
                                         <button type="button" class="btn btn-success me-2" onClick="edit({{ $expense->id }})">Detail</button>

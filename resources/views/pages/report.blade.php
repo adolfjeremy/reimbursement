@@ -24,7 +24,7 @@
                                 <form action="{{ route('monthly-report-store') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="mb-3">
-                                        <label for="name" class="col-form-label">Name:</label>
+                                        <label for="name" class="col-form-label">Expense Type:</label>
                                         <input name="name" type="text" class="form-control" id="name" required>
                                     </div>
                                     <div class="mb-3">
@@ -146,7 +146,7 @@
                         <thead>
                             <tr>
                                 <th class="table-dark" scope="col">date</th>
-                                <th class="table-dark" scope="col">name</th>
+                                <th class="table-dark" scope="col">expense type</th>
                                 <th class="table-dark" scope="col">price</th>
                                 <th class="table-dark" scope="col">status</th>
                                 <th class="table-dark" scope="col">receipt</th>
@@ -162,10 +162,19 @@
                                 <td>Rp. {{ number_format($expense->amount,0,"",".") }}</td>
                                 <td>{{ $expense->status }}</td>
                                 <td>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#{{ $expense->slug }}">
+                                    @php
+                                        $file = $expense->receipt;
+                                        $checkFile = substr($file, -3);
+                                    @endphp
+                                    @if ($checkFile == 'pdf')
+                                        <a href="{{ asset("storage/" . $expense->receipt) }}" target="_blank" class="btn btn-primary">
+                                            Open
+                                        </a>
+                                    @else
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#{{ $expense->slug }}{{ $expense->id }}">
                                     Open
                                     </button>
-                                    <div class="modal fade" id="{{ $expense->slug }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal fade" id="{{ $expense->slug }}{{ $expense->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-lg modal-dialog-centered">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -178,12 +187,13 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @endif
                                 </td>
                                 <td class="d-flex align-items-center justify-content-center">
-                                    <button type="button" class="btn btn-success me-2" data-bs-toggle="modal" data-bs-target="#{{ $expense->slug }}-detail">
+                                    <button type="button" class="btn btn-success me-2" data-bs-toggle="modal" data-bs-target="#{{ $expense->slug }}{{ $expense->id }}-detail">
                                         Detail
                                     </button>
-                                    <div class="modal fade" id="{{ $expense->slug }}-detail" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal fade" id="{{ $expense->slug }}{{ $expense->id }}-detail" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content">
                                                 <div class="modal-header">
