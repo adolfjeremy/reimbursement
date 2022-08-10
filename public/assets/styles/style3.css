@@ -29,6 +29,10 @@ ul {
     padding: 0;
 }
 
+.modal-body {
+    background-color: #e5e5e5;
+}
+
 @media (min-width: 576px) {
     .modal-body img {
         max-width: 400px;
