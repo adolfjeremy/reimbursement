@@ -30,10 +30,11 @@ class MonthlyReportController extends Controller
         $month = $request->query('m', Carbon::now()->format('F'));
         $year = $from->year;
         $expenses = Expense::where('user_id',Auth::user()->id)->whereBetween('entry_date', [$from, $to])->orderBy('entry_date', 'desc')->paginate(10)->withQueryString();
-        $pending = $expenses->where('status', 'PENDING')->sum('amount');
-        $approve = $expenses->where('status', 'APPROVE')->sum('amount');
-        $denied = $expenses->where('status', 'DENIED')->sum('amount');
-        $totalExps = $expenses->sum('amount');
+        $report = Expense::where('user_id',Auth::user()->id)->whereBetween('entry_date', [$from, $to])->orderBy('entry_date', 'desc')->get();
+        $pending = $report->where('status', 'PENDING')->sum('amount');
+        $approve = $report->where('status', 'APPROVE')->sum('amount');
+        $denied = $report->where('status', 'DENIED')->sum('amount');
+        $totalExps = $report->sum('amount');
 
         return view('pages.report', [
             'expenses' => $expenses,

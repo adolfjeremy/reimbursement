@@ -26,7 +26,7 @@ class ReportController extends Controller
         $users = User::get();
 
         if($request->query('u') === null) {
-            $expenses = Expense::whereBetween('entry_date', [$from, $to])->orderBy('entry_date', 'desc')->paginate(5)->withQueryString();
+            $expenses = Expense::whereBetween('entry_date', [$from, $to])->orderBy('entry_date', 'desc')->paginate(10)->withQueryString();
         } else {
             $expenses = Expense::where('user_id', $request->query('u'))->whereBetween('entry_date', [$from, $to])->orderBy('entry_date', 'desc')->paginate(5)->withQueryString();
         }
@@ -37,10 +37,10 @@ class ReportController extends Controller
             $reports = Expense::where('user_id', $request->query('u'))->whereBetween('entry_date', [$from, $to])->orderBy('entry_date', 'desc')->get();
         }
 
-        $pending = $expenses->where('status', 'PENDING')->sum('amount');
-        $approve = $expenses->where('status', 'APPROVE')->sum('amount');
-        $denied = $expenses->where('status', 'DENIED')->sum('amount');
-        $totalExps = $expenses->sum('amount');
+        $pending = $reports->where('status', 'PENDING')->sum('amount');
+        $approve = $reports->where('status', 'APPROVE')->sum('amount');
+        $denied = $reports->where('status', 'DENIED')->sum('amount');
+        $totalExps = $reports->sum('amount');
 
         return view('pages.Admin.report', [
             'expenses' => $expenses,
